@@ -19,7 +19,11 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// ✅ Optional: 로그 포맷 제어용 (기본 SLF4J + Logback 포함됨)
+	implementation 'org.slf4j:slf4j-api'
 	runtimeOnly 'com.h2database:h2'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
