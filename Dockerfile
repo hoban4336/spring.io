@@ -1,5 +1,9 @@
+FROM gradle:8.5.0-jdk17 AS builder
+WORKDIR /app
+COPY . .
+RUN gradle build -x test
+
 FROM openjdk:17-jdk-slim
 VOLUME /tmp
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY --from=builder /app/build/libs/*.jar /app/
+ENTRYPOINT ["java","-jar","/app/*.jar"]
