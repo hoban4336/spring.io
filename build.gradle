@@ -19,9 +19,18 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	
+	// Elastic APM
+	implementation 'co.elastic.apm:apm-agent-api:1.45.0'
+	implementation 'co.elastic.apm:apm-agent-attach:1.45.0'
+	implementation 'co.elastic.apm:apm-agent-core:1.45.0'
+	implementation 'co.elastic.apm:apm-agent-spring-boot-starter:1.45.0'
+	implementation 'co.elastic.apm:apm-agent-logback:1.45.0'
 
-	// ✅ Optional: 로그 포맷 제어용 (기본 SLF4J + Logback 포함됨)
+	// 로깅 설정
 	implementation 'org.slf4j:slf4j-api'
+	implementation 'ch.qos.logback:logback-classic'
 	runtimeOnly 'com.h2database:h2'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
