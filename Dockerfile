@@ -3,17 +3,22 @@ FROM gradle:8.5.0-jdk17 AS builder
 WORKDIR /app
 COPY . .
 RUN gradle build -x test
-RUN ls -al /app/build/libs
+
+# OTEL Agent 다운로드
+ENV OTEL_VERSION=1.32.0
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_VERSION}/opentelemetry-javaagent.jar \
+         -O /opentelemetry-javaagent.jar && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # 2단계: Final Image with OTEL Agent
 FROM openjdk:17-jdk-slim
+VOLUME /tmp
 
-# OTEL Agent 다운로드 (이미지 빌드 중)
-ENV OTEL_VERSION=1.32.0
-RUN wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_VERSION}/opentelemetry-javaagent.jar \
-    -O /opentelemetry-javaagent.jar
-# RUN curl -L https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_VERSION}/opentelemetry-javaagent.jar \
-#     -o /opentelemetry-javaagent.jar
+COPY --from=builder /app/build/libs/*.jar app.jar
+COPY --from=builder /opentelemetry-javaagent.jar /opentelemetry-javaagent.jar
 
 # OTEL ENV
 ENV JAVA_TOOL_OPTIONS="-javaagent:/opentelemetry-javaagent.jar"
@@ -23,6 +28,4 @@ ENV OTEL_TRACES_EXPORTER=otlp
 ENV OTEL_METRICS_EXPORTER=none
 ENV OTEL_LOGS_EXPORTER=none
 
-VOLUME /tmp
-COPY --from=builder /app/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
