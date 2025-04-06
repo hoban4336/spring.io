@@ -10,8 +10,10 @@ FROM openjdk:17-jdk-slim
 
 # OTEL Agent 다운로드 (이미지 빌드 중)
 ENV OTEL_VERSION=1.32.0
-RUN curl -L https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_VERSION}/opentelemetry-javaagent.jar \
-    -o /opentelemetry-javaagent.jar
+RUN wget https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_VERSION}/opentelemetry-javaagent.jar \
+    -O /opentelemetry-javaagent.jar
+# RUN curl -L https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v${OTEL_VERSION}/opentelemetry-javaagent.jar \
+#     -o /opentelemetry-javaagent.jar
 
 # OTEL ENV
 ENV JAVA_TOOL_OPTIONS="-javaagent:/opentelemetry-javaagent.jar"
