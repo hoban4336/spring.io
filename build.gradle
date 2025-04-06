@@ -20,6 +20,8 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	implementation "io.micrometer:micrometer-registry-prometheus:1.10.5"
 	
 	// Elastic APM
 	// implementation 'co.elastic.apm:apm-agent-api:1.45.0'
