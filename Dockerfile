@@ -22,7 +22,7 @@ COPY --from=builder /opentelemetry-javaagent.jar /opentelemetry-javaagent.jar
 
 # OTEL ENV
 ENV JAVA_TOOL_OPTIONS="-javaagent:/opentelemetry-javaagent.jar"
-ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://146.56.177.240:31734
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://146.56.177.240:31175
 ENV OTEL_SERVICE_NAME=spring-app
 ENV OTEL_TRACES_EXPORTER=otlp
 ENV OTEL_METRICS_EXPORTER=none
