@@ -23,10 +23,10 @@ COPY --from=builder /opentelemetry-javaagent.jar /opentelemetry-javaagent.jar
 # OTEL ENV
 ENV JAVA_TOOL_OPTIONS="-javaagent:/opentelemetry-javaagent.jar"
 ENV OTEL_JAVAAGENT_DEBUG=true
-ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector.observability.svc.cluster.local:4317
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector-opentelemetry-collector.observability.svc.cluster.local:4317
 ENV OTEL_SERVICE_NAME=spring-app
 ENV OTEL_TRACES_EXPORTER=otlp
-ENV OTEL_METRICS_EXPORTER=otlp
+ENV OTEL_METRICS_EXPORTER=none
 ENV OTEL_LOGS_EXPORTER=none
 ENV OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 
