@@ -30,4 +30,4 @@ ENV OTEL_METRICS_EXPORTER=otlp
 ENV OTEL_LOGS_EXPORTER=none
 ENV OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java",  "-javaagent:/opentelemetry-javaagent.jar", "-jar", "/app.jar"]
