@@ -25,7 +25,7 @@ public class RestTemplateConfig {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplateBuilder()
-            .additionalInterceptors(new OpenTelemetryRestTemplateInterceptor())
+            .additionalInterceptors(new OpenTelemetryRestTemplateInterceptor(appName))
             .build();
     }
 
