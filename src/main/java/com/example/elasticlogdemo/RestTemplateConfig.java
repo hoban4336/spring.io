@@ -30,16 +30,20 @@ public class RestTemplateConfig {
     }
 
     public static class OpenTelemetryRestTemplateInterceptor implements ClientHttpRequestInterceptor {
-        private final Tracer tracer = GlobalOpenTelemetry.getTracer(appName);
+        private final Tracer tracer;
+
+        public OpenTelemetryRestTemplateInterceptor(String appName) {
+            this.tracer = GlobalOpenTelemetry.getTracer(appName);
+        }
 
         @Override
         public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-            Span span = tracer.spanBuilder("Calling " + request.getURI().toString()).startSpan();
+            Span span = tracer.spanBuilder("Calling " + request.getURI()).startSpan();
             try (Scope scope = span.makeCurrent()) {
                 return execution.execute(request, body);
             } finally {
                 span.end();
             }
-        }
+        }        
     }
 }
