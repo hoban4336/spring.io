@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class IndexController {
@@ -27,6 +28,7 @@ public class IndexController {
     }
 
     private final RestTemplate restTemplate;
+
     @GetMapping("/")
     public String callSpringB() {
         if (!remoteServiceUrl.startsWith("http")) {
