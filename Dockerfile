@@ -4,6 +4,9 @@ WORKDIR /app
 COPY . .
 RUN gradle build -x test
 
+ARG APP_NAME=app-name
+ENV APP_NAME=${APP_NAME}
+
 # OTEL Agent 다운로드
 ENV OTEL_VERSION=1.32.0
 RUN apt-get update && \
