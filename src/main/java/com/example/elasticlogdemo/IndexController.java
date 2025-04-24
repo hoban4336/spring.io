@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IndexController {
+    
+    @Value("${APP_NAME:default-app}")
+    private String appName;
+
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public String hello() {
         logger.info("📥 Received request to /");
-        return "Hello from Knative!";
+        return "Hello from " + appName + "!";
     }
 }

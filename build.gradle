@@ -22,13 +22,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	implementation "io.micrometer:micrometer-registry-prometheus:1.10.5"
-	
-	// Elastic APM
-	// implementation 'co.elastic.apm:apm-agent-api:1.45.0'
-	// implementation 'co.elastic.apm:apm-agent-attach:1.45.0'
-	// implementation 'co.elastic.apm:apm-agent-core:1.45.0'
-	// implementation 'co.elastic.apm:apm-agent-spring-boot-starter:1.45.0'
-	// implementation 'co.elastic.apm:apm-agent-logback:1.45.0'
 
 	// 로깅 설정
 	implementation 'org.slf4j:slf4j-api'
