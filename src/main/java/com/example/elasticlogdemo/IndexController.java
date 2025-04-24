@@ -15,6 +15,9 @@ public class IndexController {
     @Value("${APP_NAME:default-app}")
     private String appName;
 
+    @Value("${remote.service.url:spring-io.spring-io.svc.cluster.local}")
+    private String remoteServiceUrl;
+
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @GetMapping("/hello")
@@ -22,4 +25,14 @@ public class IndexController {
         logger.info("📥 Received request to /");
         return "Hello from " + appName + "!";
     }
+
+    private final RestTemplate restTemplate;
+    @GetMapping("/")
+    public String callSpringB() {
+        if (!remoteServiceUrl.startsWith("http")) {
+            remoteServiceUrl = "http://" + remoteServiceUrl;
+        }
+        String response = restTemplate.getForObject(remoteServiceUrl + "/hello", String.class);
+        return "received: " + response;
+    }    
 }
