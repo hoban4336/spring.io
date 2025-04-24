@@ -12,22 +12,27 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class IndexController {
-    
+
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+
     @Value("${APP_NAME:default-app}")
     private String appName;
 
     @Value("${remote.service.url:spring-io.spring-io.svc.cluster.local}")
     private String remoteServiceUrl;
 
-    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+    private final RestTemplate restTemplate;
+
+    // ✅ 생성자 주입 추가
+    public IndexController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @GetMapping("/hello")
     public String hello() {
         logger.info("📥 Received request to /");
         return "Hello from " + appName + "!";
     }
-
-    private final RestTemplate restTemplate;
 
     @GetMapping("/")
     public String callSpringB() {
@@ -36,5 +41,5 @@ public class IndexController {
         }
         String response = restTemplate.getForObject(remoteServiceUrl + "/hello", String.class);
         return "received: " + response;
-    }    
+    }
 }
