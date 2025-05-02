@@ -36,4 +36,4 @@ ENV OTEL_METRICS_EXPORTER=otlp
 ENV OTEL_LOGS_EXPORTER=otlp
 
 
-ENTRYPOINT ["java",  "-javaagent:/opentelemetry-javaagent.jar", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
