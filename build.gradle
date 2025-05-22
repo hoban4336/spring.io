@@ -24,9 +24,9 @@ dependencies {
 	implementation "io.micrometer:micrometer-registry-prometheus:1.10.5"
 
 	// 로깅 설정
-	implementation 'org.slf4j:slf4j-api'
-	implementation 'ch.qos.logback:logback-classic'
-    implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:1.33.6-alpha'
+	// implementation 'org.slf4j:slf4j-api'
+	// implementation 'ch.qos.logback:logback-classic'
+    // implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:1.33.6-alpha'
 
 	runtimeOnly 'com.h2database:h2'
 

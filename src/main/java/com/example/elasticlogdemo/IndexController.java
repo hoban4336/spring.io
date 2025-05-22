@@ -34,6 +34,13 @@ public class IndexController {
         return "Hello from " + appName + "!";
     }
 
+    @GetMapping("/log")
+    public String hello() {
+        String apmLog = "log test";
+        logger.info(String.format("[LOG_FOR_APP]:%s", apmLog));
+        return "Hello from " + appName + "!";
+    }    
+
     @GetMapping("/")
     public String callSpringB() {
         if (!remoteServiceUrl.startsWith("http")) {
