@@ -35,7 +35,7 @@ public class IndexController {
     }
 
     @GetMapping("/log")
-    public String hello() {
+    public String log() {
         String apmLog = "log test";
         logger.info(String.format("[LOG_FOR_APP]:%s", apmLog));
         return "Hello from " + appName + "!";
