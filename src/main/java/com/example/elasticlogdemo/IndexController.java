@@ -41,12 +41,12 @@ public class IndexController {
         return "Hello from " + appName + "!";
     }    
 
-    @GetMapping("/")
-    public String callSpringB() {
-        if (!remoteServiceUrl.startsWith("http")) {
-            remoteServiceUrl = "http://" + remoteServiceUrl;
-        }
-        String response = restTemplate.getForObject(remoteServiceUrl + "/hello", String.class);
-        return "received: " + response;
-    }
+    // @GetMapping("/")
+    // public String callSpringB() {
+    //     if (!remoteServiceUrl.startsWith("http")) {
+    //         remoteServiceUrl = "http://" + remoteServiceUrl;
+    //     }
+    //     String response = restTemplate.getForObject(remoteServiceUrl + "/hello", String.class);
+    //     return "received: " + response;
+    // }
 }
