@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-domain
+  namespace: knative-serving
+data:
+  "knative.hav-ing.store": ""
+  "146.56.177.240.nip.io": ""
