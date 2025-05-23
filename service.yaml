@@ -12,4 +12,6 @@ spec:
       containers:
       - image: ghcr.io/hoban4336/spring.io:latest # ghcr.io/your-github-username/your-repository:latest
         ports:
-        - containerPort: 8080 
+        - containerPort: 8080
+        imagePullSecrets:
+        - name: ghcr
