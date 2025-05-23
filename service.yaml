@@ -9,9 +9,9 @@ metadata:
 spec:
   template:
     spec:
-      containers:
-      - image: ghcr.io/hoban4336/spring.io:latest # ghcr.io/your-github-username/your-repository:latest
-        ports:
-        - containerPort: 8080
-        imagePullSecrets:
+      imagePullSecrets:
         - name: ghcr
+      containers:
+        - image: ghcr.io/hoban4336/spring.io:latest # ghcr.io/your-github-username/your-repository:latest
+          ports:
+          - containerPort: 8080
